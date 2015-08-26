@@ -1,10 +1,10 @@
 {
-    "name": "takaaki-mizuno/video-service-url-analyser",
+    "name": "takaaki-mizuno/video-service-url-analyzer",
     "description": "Video URL analyzer for famous video sharing services",
     "keywords": ["video", "youtube", "vimeo"],
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/takaaki-mizuno/video-service-url-analyser",
+    "homepage": "https://github.com/takaaki-mizuno/video-service-url-analyzer",
     "authors": [
       {
         "name": "Takaaki Mizuno",
