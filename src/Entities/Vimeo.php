@@ -25,30 +25,9 @@ class Vimeo extends Base
         return 'Vimeo';
     }
 
-    public function getTitle()
+    protected function getOEmbedUrl()
     {
-        return $this->getInfo('title');
-    }
-
-    public function getThumbnailUrl()
-    {
-        return $this->getInfo('thumbnailUrl');
-    }
-
-    protected function getInfo($key)
-    {
-        if (empty($this->info)) {
-            $content = file_get_contents('https://vimeo.com/api/oembed.json?url=' . htmlspecialchars($this->getUrl()));
-
-            $info = json_decode($content, true);
-            $this->info = [
-                'title'        => isset($info['title']) ? $info['title'] : '',
-                'thumbnailUrl' => isset($info['thumbnail_url']) ? $info['thumbnail_url'] : '',
-                'authorName'   => isset($info['author_name']) ? $info['author_name'] : '',
-            ];
-        }
-
-        return $this->info['title'];
+        return 'https://vimeo.com/api/oembed.json?url=' . htmlspecialchars($this->getUrl());
     }
 
 }

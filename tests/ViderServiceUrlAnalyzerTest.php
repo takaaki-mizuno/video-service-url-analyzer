@@ -17,16 +17,22 @@ class VideoServiceUrlAnalyzerTest extends Base
 
         $analyzer = new VideoServiceUrlAnalyzer();
 
-        foreach( $urls as $url ) {
+        foreach ($urls as $url) {
             $video = $analyzer->analyze($url);
 
-            $this->assertInstanceOf('TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\YouTube', $video, "$url is not detected");
+            $this->assertInstanceOf('TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\YouTube', $video,
+                "$url is not detected");
             $this->assertEquals('YouTube', $video->getServiceName());
             $this->assertEquals('8UVNT4wvIGY', $video->getId());
             $this->assertEquals('https://youtu.be/8UVNT4wvIGY', $video->getUrl());
 
             $this->assertNotEmpty($video->getTitle());
             $this->assertNotEmpty($video->getThumbnailUrl());
+            $this->assertGreaterThan(0, $video->getDuration());
+            $this->assertGreaterThan(0, $video->getWidth());
+            $this->assertGreaterThan(0, $video->getHeight());
+            $this->assertGreaterThan(0, $video->getThumbnailWidth());
+            $this->assertGreaterThan(0, $video->getThumbnailHeight());
 
         }
     }
@@ -41,16 +47,22 @@ class VideoServiceUrlAnalyzerTest extends Base
 
         $analyzer = new VideoServiceUrlAnalyzer();
 
-        foreach( $urls as $url ) {
+        foreach ($urls as $url) {
             $video = $analyzer->analyze($url);
 
-            $this->assertInstanceOf('TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\Vimeo', $video, "$url is not detected");
+            $this->assertInstanceOf('TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\Vimeo', $video,
+                "$url is not detected");
             $this->assertEquals('Vimeo', $video->getServiceName());
             $this->assertEquals('137221490', $video->getId());
             $this->assertEquals('https://vimeo.com/137221490', $video->getUrl());
 
             $this->assertNotEmpty($video->getTitle());
             $this->assertNotEmpty($video->getThumbnailUrl());
+            $this->assertGreaterThan(0, $video->getDuration());
+            $this->assertGreaterThan(0, $video->getWidth());
+            $this->assertGreaterThan(0, $video->getHeight());
+            $this->assertGreaterThan(0, $video->getThumbnailWidth());
+            $this->assertGreaterThan(0, $video->getThumbnailHeight());
 
         }
     }

@@ -21,29 +21,24 @@ class YouTube extends Base
         return 'YouTube';
     }
 
-    public function getTitle()
+    protected function getOEmbedUrl()
     {
-        return $this->getInfo('title');
+        return 'http://www.youtube.com/oembed?format=json&url=' . htmlspecialchars($this->getUrl());
     }
 
-    public function getThumbnailUrl()
-    {
-        return $this->getInfo('thumbnailUrl');
-    }
-
-    protected function getInfo($key)
+    protected function getInfo($key, $default = null)
     {
         if (empty($this->info)) {
+            parent::getInfo($key, $default);
+
             $content = file_get_contents('http://youtube.com/get_video_info?video_id=' . $this->getId());
             parse_str($content, $info);
-            $this->info = [
-                'title'        => isset($info['title']) ? $info['title'] : '',
-                'thumbnailUrl' => isset($info['thumbnail_url']) ? $info['thumbnail_url'] : '',
-                'authorName'   => isset($info['author']) ? $info['author'] : '',
-            ];
+            $this->info['duration'] = isset($info['length_seconds']) ? $info['length_seconds'] : 0;
+            if (isset($info['iurlmaxres'])) {
+                $this->info['thumbnailUrl'] = $info['iurlmaxres'];
+            }
         }
 
-        return $this->info['title'];
+        return $this->info[$key];
     }
-
 }
