@@ -24,7 +24,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "TakaakiMizuno\\VideoServiceUrlAnalyzer\\Tests": "tests"
+            "TakaakiMizuno\\VideoServiceUrlAnalyzer\\Tests\\": "tests"
         }
     }
 
