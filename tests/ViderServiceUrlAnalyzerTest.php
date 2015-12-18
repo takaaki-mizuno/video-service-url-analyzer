@@ -67,4 +67,19 @@ class VideoServiceUrlAnalyzerTest extends Base
         }
     }
 
+    public function testInvalidURLs()
+    {
+        $urls = [
+            null,
+            'invalid-url',
+            __FILE__,
+        ];
+
+        $analyzer = new VideoServiceUrlAnalyzer();
+
+        foreach ($urls as $url) {
+            $this->assertNull($analyzer->analyze($url));
+        }
+    }
+    
 }
