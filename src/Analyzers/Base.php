@@ -4,7 +4,7 @@ namespace TakaakiMizuno\VideoServiceUrlAnalyzer\Analyzers;
 abstract class Base
 {
 
-    /** @var array  */
+    /** @var array */
     static protected $domains = [];
 
     /**
@@ -24,11 +24,9 @@ abstract class Base
     public function check($url)
     {
         $parsedUrlElements = parse_url($url);
-        if (in_array(strtolower($parsedUrlElements['host']), static::$domains)) {
-            return true;
-        }
 
-        return false;
+        return array_key_exists('host', $parsedUrlElements) &&
+               in_array(strtolower($parsedUrlElements['host']), static::$domains, true);
     }
 
 

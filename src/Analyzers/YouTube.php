@@ -17,7 +17,7 @@ class YouTube extends Base
             return null;
         }
         $parsedUrlElements = parse_url($url);
-        $id = null;
+        $id                = null;
         if (!isset($parsedUrlElements['host'])) {
             return null;
         }
@@ -48,16 +48,6 @@ class YouTube extends Base
         $video = new YouTubeEntity($id);
 
         return $video;
-    }
-
-    public function check($url)
-    {
-        $parsedUrlElements = parse_url($url);
-        if (in_array(strtolower($parsedUrlElements['host']), static::$domains)) {
-            return true;
-        }
-
-        return false;
     }
 
 }
