@@ -5,8 +5,7 @@ use TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\YouTube as YouTubeEntity;
 
 class YouTube extends Base
 {
-
-    static protected $domains = [
+    protected static $domains = [
         'www.youtube.com',
         'youtu.be',
     ];
@@ -14,12 +13,12 @@ class YouTube extends Base
     public function analyze($url)
     {
         if (!$this->check($url)) {
-            return null;
+            return;
         }
         $parsedUrlElements = parse_url($url);
         $id                = null;
         if (!isset($parsedUrlElements['host'])) {
-            return null;
+            return;
         }
         switch (strtolower($parsedUrlElements['host'])) {
             case 'www.youtube.com':
@@ -32,7 +31,7 @@ class YouTube extends Base
                     if (isset($parsedUrlElements['query'])) {
                         parse_str($parsedUrlElements['query'], $queryParams);
                         if (!array_key_exists('v', $queryParams)) {
-                            return null;
+                            return;
                         }
                         $id = $queryParams['v'];
                     }
@@ -43,11 +42,10 @@ class YouTube extends Base
                 break;
         }
         if (empty($id)) {
-            return null;
+            return;
         }
         $video = new YouTubeEntity($id);
 
         return $video;
     }
-
 }

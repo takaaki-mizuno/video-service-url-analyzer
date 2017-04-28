@@ -3,16 +3,15 @@ namespace TakaakiMizuno\VideoServiceUrlAnalyzer\Entities;
 
 abstract class Base
 {
-
     /** @var string */
     protected $id;
 
-    /** @var  array */
+    /** @var array */
     protected $info;
 
     public function __construct($id)
     {
-        $this->id = $id;
+        $this->id   = $id;
         $this->info = null;
     }
 
@@ -30,8 +29,9 @@ abstract class Base
     abstract public function getUrl();
 
     /**
-     * @param  int $width
-     * @param  int $height
+     * @param int $width
+     * @param int $height
+     *
      * @return string
      */
     abstract public function getEmbeddedHtml($width, $height);
@@ -40,7 +40,6 @@ abstract class Base
      * @return string
      */
     abstract public function getEmbeddedSrcUrl();
-
 
     abstract public function getServiceName();
 
@@ -90,8 +89,9 @@ abstract class Base
     abstract protected function getOEmbedUrl();
 
     /**
-     * @param  string $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     protected function getInfo($key, $default = null)
@@ -99,7 +99,7 @@ abstract class Base
         if (empty($this->info)) {
             $content = file_get_contents($this->getOEmbedUrl());
 
-            $info = json_decode($content, true);
+            $info       = json_decode($content, true);
             $this->info = [
                 'title'           => isset($info['title']) ? $info['title'] : '',
                 'thumbnailUrl'    => isset($info['iurlmaxres']) ? $info['iurlmaxres'] :
@@ -118,5 +118,4 @@ abstract class Base
 
         return isset($this->info[$key]) ? $this->info[$key] : $default;
     }
-
 }

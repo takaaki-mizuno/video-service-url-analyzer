@@ -3,26 +3,25 @@ namespace TakaakiMizuno\VideoServiceUrlAnalyzer\Entities;
 
 class Vimeo extends Base
 {
-
-    /** @var  array */
+    /** @var array */
     protected $info;
 
     public function getEmbeddedSrcUrl()
     {
-        return 'https://player.vimeo.com/video/' . $this->getId();
+        return 'https://player.vimeo.com/video/'.$this->getId();
     }
 
-    function getEmbeddedHtml($width = 500, $height = 281)
+    public function getEmbeddedHtml($width = 500, $height = 281)
     {
-        return '<iframe src="' . $this->getEmbeddedSrcUrl() .
-        '" width="' . intval($width) . '" height="'
-        . intval($height) .
+        return '<iframe src="'.$this->getEmbeddedSrcUrl().
+        '" width="'.intval($width).'" height="'
+        .intval($height).
         '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
     }
 
     public function getUrl()
     {
-        return 'https://vimeo.com/' . $this->getId();
+        return 'https://vimeo.com/'.$this->getId();
     }
 
     public function getServiceName()
@@ -32,7 +31,6 @@ class Vimeo extends Base
 
     protected function getOEmbedUrl()
     {
-        return 'https://vimeo.com/api/oembed.json?url=' . htmlspecialchars($this->getUrl());
+        return 'https://vimeo.com/api/oembed.json?url='.htmlspecialchars($this->getUrl());
     }
-
 }
