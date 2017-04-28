@@ -36,6 +36,12 @@ abstract class Base
      */
     abstract public function getEmbeddedHtml($width, $height);
 
+    /**
+     * @return string
+     */
+    abstract public function getEmbeddedSrcUrl();
+
+
     abstract public function getServiceName();
 
     public function getTitle($default = null)

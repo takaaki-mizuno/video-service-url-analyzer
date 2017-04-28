@@ -7,9 +7,14 @@ class Vimeo extends Base
     /** @var  array */
     protected $info;
 
+    public function getEmbeddedSrcUrl()
+    {
+        return 'https://player.vimeo.com/video/' . $this->getId();
+    }
+
     function getEmbeddedHtml($width = 500, $height = 281)
     {
-        return '<iframe src="https://player.vimeo.com/video/' . $this->getId() .
+        return '<iframe src="' . $this->getEmbeddedSrcUrl() .
         '" width="' . intval($width) . '" height="'
         . intval($height) .
         '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';

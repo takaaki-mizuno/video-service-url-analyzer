@@ -4,11 +4,15 @@ namespace TakaakiMizuno\VideoServiceUrlAnalyzer\Entities;
 class YouTube extends Base
 {
 
+    public function getEmbeddedSrcUrl()
+    {
+        return 'https://www.youtube.com/embed/' . $this->id;
+    }
+
     function getEmbeddedHtml($width = 560, $height = 315)
     {
         return '<iframe width="' . intval($width) . '" height="'
-        . intval($height) . '" src="https://www.youtube.com/embed/'
-        . $this->id . '" frameborder="0" allowfullscreen></iframe>';
+        . intval($height) . '" src="' . $this->getEmbeddedSrcUrl() . '" frameborder="0" allowfullscreen></iframe>';
     }
 
     public function getUrl()

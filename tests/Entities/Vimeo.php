@@ -14,5 +14,10 @@ class VimeoTest extends Base
         $this->assertEquals('Vimeo', $entity->getServiceName());
         $this->assertEquals('137221490', $entity->getId());
         $this->assertEquals('https://vimeo.com/137221490', $entity->getUrl());
+
+        $this->assertEquals('https://player.vimeo.com/video/137221490', $entity->getEmbeddedSrcUrl());
+
+        $html = $entity->getEmbeddedHtml();
+        $this->assertEquals(1, preg_match('/iframe/', $html));
     }
 }

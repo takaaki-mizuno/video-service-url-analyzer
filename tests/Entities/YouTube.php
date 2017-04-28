@@ -14,5 +14,9 @@ class YouTubeTest extends Base
         $this->assertEquals('YouTube', $entity->getServiceName());
         $this->assertEquals('8UVNT4wvIGY', $entity->getId());
         $this->assertEquals('https://youtu.be/8UVNT4wvIGY', $entity->getUrl());
+        $this->assertEquals('https://www.youtube.com/embed/8UVNT4wvIGY', $entity->getEmbeddedSrcUrl());
+
+        $html = $entity->getEmbeddedHtml();
+        $this->assertEquals(1, preg_match('/iframe/', $html));
     }
 }
