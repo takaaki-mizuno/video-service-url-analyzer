@@ -113,6 +113,7 @@ abstract class Base
                     isset($info['width']) ? $info['width'] : 0,
                 'thumbnailHeight' => isset($info['thumbnail_height']) ? $info['thumbnail_height'] :
                     isset($info['height']) ? $info['height'] : 0,
+                'html'            => isset($info['html']) ? $info['html'] : '',
             ];
         }
 

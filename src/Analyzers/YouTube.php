@@ -13,12 +13,12 @@ class YouTube extends Base
     public function analyze($url)
     {
         if (!$this->check($url)) {
-            return;
+            return null;
         }
         $parsedUrlElements = parse_url($url);
         $id                = null;
         if (!isset($parsedUrlElements['host'])) {
-            return;
+            return null;
         }
         switch (strtolower($parsedUrlElements['host'])) {
             case 'www.youtube.com':
@@ -31,7 +31,7 @@ class YouTube extends Base
                     if (isset($parsedUrlElements['query'])) {
                         parse_str($parsedUrlElements['query'], $queryParams);
                         if (!array_key_exists('v', $queryParams)) {
-                            return;
+                            return null;
                         }
                         $id = $queryParams['v'];
                     }
@@ -42,7 +42,7 @@ class YouTube extends Base
                 break;
         }
         if (empty($id)) {
-            return;
+            return null;
         }
         $video = new YouTubeEntity($id);
 

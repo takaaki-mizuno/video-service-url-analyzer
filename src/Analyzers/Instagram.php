@@ -1,13 +1,13 @@
 <?php
 namespace TakaakiMizuno\VideoServiceUrlAnalyzer\Analyzers;
 
-use TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\Vimeo as VimeoEntity;
+use TakaakiMizuno\VideoServiceUrlAnalyzer\Entities\Instagram as InstagramEntity;
 
-class Vimeo extends Base
+class Instagram extends Base
 {
     protected static $domains = [
-        'vimeo.com',
-        'player.vimeo.com',
+        'instagram.com',
+        'www.instagram.com',
     ];
 
     public function analyze($url)
@@ -18,12 +18,12 @@ class Vimeo extends Base
         $parsedUrlElements = parse_url($url);
         $elements          = explode('/', substr(strtolower($parsedUrlElements['path']), 1));
 
-        $id = $elements[count($elements) - 1];
+        $id = $elements[count($elements) - 2];
 
         if (empty($id)) {
             return null;
         }
-        $video = new VimeoEntity($id);
+        $video = new InstagramEntity($id);
 
         return $video;
     }
