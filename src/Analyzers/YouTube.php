@@ -45,7 +45,10 @@ class YouTube extends Base
             return null;
         }
         $video = new YouTubeEntity($id);
-
+        $title = $name = $video->getTitle();
+        if( empty($title) ) {
+            return null;
+        }
         return $video;
     }
 }

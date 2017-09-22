@@ -19,4 +19,5 @@ class YouTubeTest extends Base
         $html = $entity->getEmbeddedHtml();
         $this->assertEquals(1, preg_match('/iframe/', $html));
     }
+
 }

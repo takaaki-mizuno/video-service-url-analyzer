@@ -73,6 +73,9 @@ class VideoServiceUrlAnalyzerTest extends Base
             null,
             'invalid-url',
             __FILE__,
+            'https://www.youtube.com/watch?asdasdadasdsa',
+            'https://www.youtube.com/asdasdasdas',
+            'https://www.youtube.com/watch?v=XXXX',
         ];
 
         $analyzer = new VideoServiceUrlAnalyzer();

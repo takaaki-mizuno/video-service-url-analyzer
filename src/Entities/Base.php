@@ -97,8 +97,11 @@ abstract class Base
     protected function getInfo($key, $default = null)
     {
         if (empty($this->info)) {
-            $content = file_get_contents($this->getOEmbedUrl());
-
+            $content = @file_get_contents($this->getOEmbedUrl());
+            if( !$content ) {
+                $this->info = [];
+                return $default;
+            }
             $info       = json_decode($content, true);
             $this->info = [
                 'title'           => isset($info['title']) ? $info['title'] : '',

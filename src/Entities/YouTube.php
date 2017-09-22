@@ -42,6 +42,6 @@ class YouTube extends Base
             }
         }
 
-        return $this->info[$key];
+        return isset($this->info[$key]) ? $this->info[$key] : $default;
     }
 }
